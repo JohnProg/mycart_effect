@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Jcart</title>
+		<!-- CSS-->
+		<style>
+		    @font-face{
+		    	font-family: kabell;
+		    	src: url(../font/kabell.woff);
+		    }
+		    h1{
+		    	font-family: kabell, Helvetica, Arial, sans-serif !important;
+				font-weight: bold;
+				text-align: center;
+				margin-top: 0.5em;
+				margin-bottom: -0.5em;
+				font-size: 5em;
+		    }
+			.content_ul > .clone{
+				position:absolute;
+				z-index:100;
+			}
+			.content_ul {
+			    padding: 0;
+				margin: 7em auto;
+				text-align: center;
+				width: 75%;
+			}
+			.content_ul > li {
+				display: inline-block;
+				margin: 0 3%;
+				cursor: pointer;
+				margin-bottom: 1em;
+			}
+		</style>
+	</head>	
+	<body>
+		<h1>My Cart</h1>
+		<ul class="content_ul">
+			<li>
+				<img src="inceptiondvd.png">
+			</li>
+			<li>
+				<img src="inceptiondvd.png">
+			</li>
+			<li>
+				<img src="inceptiondvd.png">
+			</li>
+			<li>
+				<img src="inceptiondvd.png">
+			</li>
+			<li>
+				<img src="inceptiondvd.png">
+			</li>
+			<li>
+				<img src="inceptiondvd.png">
+			</li>
+			<li>
+				<img src="inceptiondvd.png">
+			</li>
+			<li>
+				<img src="inceptiondvd.png">
+			</li>
+			<li>
+				<img src="inceptiondvd.png">
+			</li>
+			<li>
+				<img src="inceptiondvd.png">
+			</li>
+		</ul>
+	<!-- JavaScript -->	
+	<script src="jquery.min.js"></script>
+	<script defer="" src="plugins.js"></script>
+	<script>
+		$(function(){
+			$(".content_ul > li").click(function(){
+				var self = $(this);
+				var clone = $(this).clone(), position = $(this).position();
+				clone.addClass('clone');
+					
+				var bezier_params = {
+				    start: { 
+				      x: position.left, 
+				      y: position.top-100, 
+				      angle: -190
+				    },  
+				    end: { 
+				      x:480,
+				      y:-300, 
+				      angle: 180, 
+				      length: .2
+				    }
+			  	};		
+				clone.appendTo('.content_ul');
+				clone.animate({path : new $.path.bezier(bezier_params)}, 800);
+				setTimeout(function(){
+					self.siblings('.clone').remove();
+				}, 8000);
+			});	
+		});
+	</script>
+	</body>
+</html>
